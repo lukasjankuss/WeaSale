@@ -4,9 +4,10 @@ import numpy, seaborn, sklearn
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+import joblib
 
 # Load the dataset
-data = pd.read_csv('dataset/mockDataset.csv')
+data = pd.read_csv('dataset/adjusted_mockDataset.csv')
 
 # Convert 'Date' to datetime format
 data['Date'] = pd.to_datetime(data['Date'])
@@ -53,3 +54,6 @@ print(f"R-squared: {r2}")
 # Plot
 data.plot(kind='scatter', x='Temperature', y='Sales')
 plt.show()
+
+# Save the model
+joblib.dump(model, 'sales_prediction_model.joblib')
